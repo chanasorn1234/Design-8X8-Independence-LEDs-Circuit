@@ -1,5 +1,5 @@
 int ground[8] ={2,3,4,5,6,7,8,9};
-int led[4] = {10,11,12,13};
+int led[4] = {10,11};
 int boo = 1;
 void setup() {
 for(int i=0;i<=7;i++){
@@ -21,16 +21,26 @@ void loop() {
 
 for(int n=0;n<=7;n++){
   digitalWrite(ground[n],LOW);
-  for(int k=0;k<=3;k++){
-    digitalWrite(led[k],HIGH);
-    delay(500);
-    digitalWrite(led[k],LOW);
-    delay(100);
-    
+  for(int k=0;k<=1;k++){
+    for(int p=0;p<=100;p++){
+    analogWrite(led[k],p);
+    delay(2);
+    }
+    if(n!=0){
+      digitalWrite(ground[n-1],HIGH);
+    }
+    for(int q=100;q>=5;q--){
+    analogWrite(led[k],q);
+    delay(2);   
   }
-  digitalWrite(ground[n],HIGH);
+  }
+  if(n==7){digitalWrite(ground[n],HIGH);}
   
 }
+
+//digitalWrite(ground[7],LOW);
+//digitalWrite(led[0],HIGH);
+//digitalWrite(led[1],HIGH);
 
 
 }
